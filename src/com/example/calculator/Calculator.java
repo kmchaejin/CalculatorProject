@@ -1,66 +1,47 @@
 package com.example.calculator;
-import java.util.Scanner;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class Calculator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    double result = 0.0;
+    private List<Double> resultList = new ArrayList<>();
 
-        while (true) {
-            // 첫 번째 값 입력
-            System.out.println("숫자를 입력해주세요.");
-            String firstInput = scanner.next();
-            int num1 = 0;
-
-            // 입력값이 exit면 종료
-            if(firstInput.equals("exit")){
-                System.out.println("프로그램이 종료됩니다.");
+    public double calculate(int num1, int num2, char calc){
+        switch (calc) {
+            case '+':
+                result = num1 + num2;
                 break;
-            }
-            else{
-                try {
-                    // 문자열을 정수로 변환해서 연산
-                    num1 = Integer.parseInt(firstInput);
-                }
-                catch(NumberFormatException e){
-                    // exit 외의 문자열을 입력한 경우 재입력
-                    System.out.println("exit 또는 양의 정수만 입력해주세요.");
-                    continue;
-                }
-            }
-
-            // 두 번째 정수와 연산 기호 입력
-            int num2 = scanner.nextInt();
-            System.out.println("연산 기호를 입력해주세요.");
-            char calc = scanner.next().charAt(0);
-            double result = 0.0;
-
-            // 입력값이 음수이면 재입력
-            if(num1 < 0 || num2 < 0){
-                System.out.println("양의 정수를 입력해주세요.");
-            }
-
-            switch (calc) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    result = (double) num1 / num2;
-                    break;
-                case '%':
-                    result = num1 % num2;
-                    break;
-                default:
-                    System.out.println("잘못된 연산 기호입니다.");
-                    break;
-            }
-
-            System.out.println(num1 + " " + calc + " " + num2 + " " + "=" + " " + result +"\n");
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = (double) num1 / num2;
+                break;
+            case '%':
+                result = num1 % num2;
+                break;
+            default:
+                System.out.println("잘못된 연산 기호입니다.");
+                break;
         }
+
+        resultList.add(result);
+        return result;
+    }
+
+    public void removeFirstData(){
+        resultList.remove(0);
+    }
+
+    public List<Double> getResult(){
+        return resultList;
+    }
+
+    public void setResult(double num){
+        resultList.set(0, num);
     }
 }

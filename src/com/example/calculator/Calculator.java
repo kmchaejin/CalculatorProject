@@ -1,7 +1,11 @@
 package com.example.calculator;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Calculator {
     double result = 0.0;
+    private List<Double> resultList = new ArrayList<>();
 
     public double calculate(int num1, int num2, char calc){
         switch (calc) {
@@ -25,7 +29,15 @@ public class Calculator {
                 break;
         }
 
+        resultList.add(result);
         return result;
     }
 
+    public List<Double> getResult(){
+        return resultList;
+    }
+
+    public void setResult(double num){
+        resultList.set(0, num);
+    }
 }

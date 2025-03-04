@@ -53,6 +53,12 @@ public class App {
         // 연산 결과 리스트의 첫 번째 값을 0.0으로 수정
         calculator.setResult(0.0);
         System.out.println(calculator.getResult());
+
+        // 연산 결과 리스트의 첫 번째 값 삭제
+        calculator.removeFirstData();
+        System.out.println(calculator.getResult());
+
+        scanner.close();
     }
 }
 

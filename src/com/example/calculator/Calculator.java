@@ -33,6 +33,10 @@ public class Calculator {
         return result;
     }
 
+    public void removeFirstData(){
+        resultList.remove(0);
+    }
+
     public List<Double> getResult(){
         return resultList;
     }

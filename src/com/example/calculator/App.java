@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        // 스캐너 객체, 계산기 객체 생성
         Scanner scanner = new Scanner(System.in);
-
-        // 계산기 객체 생성
         Calculator calculator = new Calculator();
 
         while (true) {
-            // 첫 번째 값 입력
-            System.out.println("숫자를 입력해주세요.");
-            String firstInput = scanner.next();
-
             int num1 = 0;
+            double result = 0.0;
+
+            // 첫 번째 값 입력
+            System.out.println("첫 번째 숫자를 입력해주세요. (exit 입력 시 종료됩니다)");
+            String firstInput = scanner.next();
 
             // 입력값이 exit면 종료
             if (firstInput.equals("exit")) {
@@ -21,8 +21,9 @@ public class App {
                 break;
             } else {
                 try {
-                    // 문자열을 정수로 변환
+                    // 입력한 숫자의 타입을 정수로 변환
                     num1 = Integer.parseInt(firstInput);
+
                 } catch (NumberFormatException e) {
                     // exit 외의 문자열을 입력한 경우 재입력
                     System.out.println("exit 또는 양의 정수만 입력해주세요.");
@@ -31,11 +32,10 @@ public class App {
             }
 
             // 두 번째 정수와 연산 기호 입력
+            System.out.println("두 번째 숫자를 입력해주세요.");
             int num2 = scanner.nextInt();
             System.out.println("연산 기호를 입력해주세요.");
             char calc = scanner.next().charAt(0);
-
-            double result = 0.0;
 
             // 입력값이 음수이면 재입력
             if (num1 < 0 || num2 < 0) {

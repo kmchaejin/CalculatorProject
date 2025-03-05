@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Calculator<T extends Number> {
-    double result;
     double num1;
     double num2;
     char operator;
+    double result;
     private List<Double> resultList = new ArrayList<>();
 
-    public void setNum1(T num1){
+    public void setNum1(Number num1){
         this.num1 = num1.doubleValue();
     }
 
-    public void setNum2(T num2){
+    public void setNum2(Number num2){
         this.num2 = num2.doubleValue();
     }
 
-    public void setSymbol(char operator){
+    public void setOperator(char operator){
         this.operator = operator;
     }
 
@@ -46,19 +46,20 @@ public class Calculator<T extends Number> {
 
         resultList.add(result);
     }
-    public Double getLastestResult(){
-        return resultList.get(resultList.size()-1);
-    }
-
-    public void removeFirstData(){
-        resultList.remove(0);
-    }
 
     public List<Double> getResult(){
         return resultList;
     }
 
-    public void setResult(T num){
+    public Double getLastResult(){
+        return resultList.get(resultList.size()-1);
+    }
+
+    public void setResult(Number num){
         resultList.set(0, num.doubleValue());
+    }
+
+    public void removeFirstData(){
+        resultList.remove(0);
     }
 }

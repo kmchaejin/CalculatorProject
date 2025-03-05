@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Calculator<T extends Number> {
     double num1;
     double num2;
-    char operator;
+    Operator operator;
     double result;
     private List<Double> resultList = new ArrayList<>();
 
@@ -18,29 +18,26 @@ public class Calculator<T extends Number> {
         this.num2 = num2.doubleValue();
     }
 
-    public void setOperator(char operator){
+    public void setOperator(Operator operator){
         this.operator = operator;
     }
 
     public void calculate(){
         switch (operator) {
-            case '+':
+            case ADD:
                 result = num1 + num2;
                 break;
-            case '-':
+            case SUBTRACT:
                 result = num1 - num2;
                 break;
-            case '*':
+            case MULTIPLY:
                 result = num1 * num2;
                 break;
-            case '/':
+            case DIVIDE:
                 result = num1 / num2;
                 break;
-            case '%':
+            case MODULUS:
                 result = num1 % num2;
-                break;
-            default:
-                System.out.println("잘못된 연산 기호입니다.");
                 break;
         }
 

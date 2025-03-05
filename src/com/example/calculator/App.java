@@ -12,7 +12,7 @@ public class App {
         while (true) {
             String firstInput;
             String secondInput;
-            char operator;
+            Operator operator;
             double doubleNum;
             int intNum;
 
@@ -37,7 +37,7 @@ public class App {
                     }
                 } catch (NumberFormatException e) {
                     // exit 외의 문자열을 입력한 경우 재입력
-                    System.out.println("exit 또는 숫자만 입력해주세요.");
+                    System.out.println("exit 또는 숫자만 입력해주세요.\n");
                     continue;
                 }
             }
@@ -62,19 +62,25 @@ public class App {
                     }
                 } catch (NumberFormatException e) {
                     // exit 외의 문자열을 입력한 경우 재입력
-                    System.out.println("exit 또는 숫자만 입력해주세요.");
+                    System.out.println("exit 또는 숫자만 입력해주세요.\n");
                     continue;
                 }
             }
 
             // 연산 기호 입력
             System.out.println("연산 기호를 입력해주세요.");
-            operator = scanner.next().charAt(0);
-            calculator.setOperator(operator);
+            operator = Operator.getOperatorEnum(scanner.next().charAt(0));
+
+            // 지정된 연산 기호가 아닐 경우 재입력
+            if(operator==null){
+                System.out.println("잘못된 연산 기호를 입력하셨습니다.\n");
+                continue;
+            }
 
             // 연산 실행
+            calculator.setOperator(operator);
             calculator.calculate();
-            System.out.println(firstInput + " " + operator + " " + secondInput + " = " + calculator.getLastResult() + "\n");
+            System.out.println(firstInput + " " + operator.getOperator() + " " + secondInput + " = " + calculator.getLastResult() + "\n");
         }
 
         try {
@@ -96,8 +102,8 @@ public class App {
                             .filter(num -> num > n)
                             .collect(Collectors.toList())
             );
-        }
-        catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
+            // 수정, 삭제할 연산 결과가 없는 경우 try 내부 과정 생략
             System.out.println("저장된 연산 결과가 없습니다.");
         }
 

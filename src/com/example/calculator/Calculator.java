@@ -3,12 +3,27 @@ package com.example.calculator;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Calculator {
-    double result = 0.0;
+public class Calculator<T extends Number> {
+    double num1;
+    double num2;
+    char operator;
+    double result;
     private List<Double> resultList = new ArrayList<>();
 
-    public double calculate(int num1, int num2, char calc){
-        switch (calc) {
+    public void setNum1(Number num1){
+        this.num1 = num1.doubleValue();
+    }
+
+    public void setNum2(Number num2){
+        this.num2 = num2.doubleValue();
+    }
+
+    public void setOperator(char operator){
+        this.operator = operator;
+    }
+
+    public void calculate(){
+        switch (operator) {
             case '+':
                 result = num1 + num2;
                 break;
@@ -19,7 +34,7 @@ public class Calculator {
                 result = num1 * num2;
                 break;
             case '/':
-                result = (double) num1 / num2;
+                result = num1 / num2;
                 break;
             case '%':
                 result = num1 % num2;
@@ -30,18 +45,21 @@ public class Calculator {
         }
 
         resultList.add(result);
-        return result;
-    }
-
-    public void removeFirstData(){
-        resultList.remove(0);
     }
 
     public List<Double> getResult(){
         return resultList;
     }
 
-    public void setResult(double num){
-        resultList.set(0, num);
+    public Double getLastResult(){
+        return resultList.get(resultList.size()-1);
+    }
+
+    public void setResult(Number num){
+        resultList.set(0, num.doubleValue());
+    }
+
+    public void removeFirstData(){
+        resultList.remove(0);
     }
 }

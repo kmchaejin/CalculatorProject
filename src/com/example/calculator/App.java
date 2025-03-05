@@ -77,27 +77,29 @@ public class App {
             System.out.println(firstInput + " " + operator + " " + secondInput + " = " + calculator.getLastResult() + "\n");
         }
 
-        // 연산 결과 리스트 출력
-        System.out.println(calculator.getResult());
+        try {
+            // 연산 결과 리스트의 첫 번째 값을 0으로 수정
+            calculator.setResult(0);
+            System.out.println(calculator.getResult());
 
-        // 연산 결과 리스트의 첫 번째 값을 0으로 수정
-        calculator.setResult(0);
-        System.out.println(calculator.getResult());
+            // 연산 결과 리스트의 첫 번째 값 삭제
+            calculator.removeFirstData();
+            System.out.println(calculator.getResult());
 
-        // 연산 결과 리스트의 첫 번째 값 삭제
-        calculator.removeFirstData();
-        System.out.println(calculator.getResult());
+            // 정수 입력
+            System.out.println("정수 하나를 입력해주세요.");
+            double n = scanner.nextInt();
 
-        // 정수 입력
-        System.out.println("정수 하나를 입력해주세요.");
-        double n = scanner.nextInt();
-
-        // 입력한 수보다 큰 연산 결과만 출력
-        System.out.println(
-                calculator.getResult().stream()
-                        .filter(num -> num > n)
-                        .collect(Collectors.toList())
-        );
+            // 입력한 수보다 큰 연산 결과만 출력
+            System.out.println(
+                    calculator.getResult().stream()
+                            .filter(num -> num > n)
+                            .collect(Collectors.toList())
+            );
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("저장된 연산 결과가 없습니다.");
+        }
 
         scanner.close();
     }
